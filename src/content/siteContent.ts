@@ -9,7 +9,7 @@ import {
   TeachingExperience,
 } from "../types";
 
-const avatarPath = "../chibi_avatar.svg";
+const avatarPath = "../profile-image.png";
 const avatarUrl = new URL(avatarPath, import.meta.url).href;
 
 export const siteCopy: SiteCopy = {
