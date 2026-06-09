@@ -1,4 +1,4 @@
-import { Degree, CourseCategory, Award } from "../types";
+import { Degree, CourseCategory, Award, SiteCopy } from "../types";
 import { GraduationCap, Award as AwardIcon, BookOpen, ExternalLink, ShieldCheck, Github } from "lucide-react";
 import { motion } from "motion/react";
 
@@ -6,9 +6,11 @@ interface EducationSectionProps {
   degrees: Degree[];
   courseCategories: CourseCategory[];
   awards: Award[];
+  sections: SiteCopy["sections"];
+  emptyState: string;
 }
 
-export default function EducationSection({ degrees, courseCategories, awards }: EducationSectionProps) {
+export default function EducationSection({ degrees, courseCategories, awards, sections, emptyState }: EducationSectionProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 15 }}
@@ -22,7 +24,7 @@ export default function EducationSection({ degrees, courseCategories, awards }: 
         <div className="flex items-center gap-3 border-b border-gray-100 pb-3">
           <GraduationCap className="w-6 h-6 text-[#007bfe]" />
           <h2 className="font-heading text-2xl font-bold text-[#007bfe]" id="edu-title">
-            Education
+            {sections.education}
           </h2>
         </div>
 
@@ -81,7 +83,7 @@ export default function EducationSection({ degrees, courseCategories, awards }: 
         <div className="flex items-center gap-3 border-b border-gray-100 pb-3">
           <BookOpen className="w-5 h-5 text-[#007bfe]" />
           <h2 className="font-heading text-xl md:text-2xl font-bold text-[#007bfe]" id="courses-title">
-            Courses
+            {sections.courses}
           </h2>
         </div>
 
@@ -98,7 +100,7 @@ export default function EducationSection({ degrees, courseCategories, awards }: 
                 {isTbdOnly ? (
                   <div className="p-4 bg-gray-50/50 border border-dashed border-gray-200 rounded-xl text-center">
                     <span className="font-mono text-xs text-gray-400 font-semibold tracking-wider">
-                      To Be Done.
+                      {emptyState}
                     </span>
                   </div>
                 ) : (
@@ -165,7 +167,7 @@ export default function EducationSection({ degrees, courseCategories, awards }: 
         <div className="flex items-center gap-3 border-b border-gray-100 pb-3">
           <AwardIcon className="w-5 h-5 text-[#007bfe]" />
           <h2 className="font-heading text-xl md:text-2xl font-bold text-[#007bfe]" id="awards-title">
-            Awards
+            {sections.awards}
           </h2>
         </div>
 

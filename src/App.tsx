@@ -13,14 +13,14 @@ import {
   initialProjects,
   initialTeaching,
   initialHobbies,
-} from "./data";
+  siteCopy,
+} from "./content/siteContent";
 import Sidebar from "./components/Sidebar";
 import HomeSection from "./components/HomeSection";
 import EducationSection from "./components/EducationSection";
 import TeachingSection from "./components/TeachingSection";
 import HobbySection from "./components/HobbySection";
 import EditorPanel from "./components/EditorPanel";
-import { Sparkles, ArrowRight, BookOpen, Heart, GraduationCap, Compass, HelpCircle } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 
 export default function App() {
@@ -111,21 +111,23 @@ export default function App() {
   const renderTabContent = () => {
     switch (activeTab) {
       case "home":
-        return <HomeSection profile={profile} projects={projects} />;
+        return <HomeSection profile={profile} projects={projects} copy={siteCopy} />;
       case "education":
         return (
           <EducationSection
             degrees={degrees}
             courseCategories={courseCategories}
             awards={awards}
+            sections={siteCopy.sections}
+            emptyState={siteCopy.home.emptyState}
           />
         );
       case "teaching":
-        return <TeachingSection teaching={teaching} />;
+        return <TeachingSection teaching={teaching} copy={siteCopy} />;
       case "hobby":
-        return <HobbySection hobbies={hobbies} />;
+        return <HobbySection hobbies={hobbies} title={siteCopy.sections.hobbies} />;
       default:
-        return <HomeSection profile={profile} projects={projects} />;
+        return <HomeSection profile={profile} projects={projects} copy={siteCopy} />;
     }
   };
 
@@ -141,6 +143,7 @@ export default function App() {
         setIsOpen={setSidebarOpen}
         customizing={customizing}
         setCustomizing={setCustomizing}
+        navigation={siteCopy.navigation}
       />
 
       {/* Main Right Content Section */}
@@ -162,7 +165,7 @@ export default function App() {
               <span>© {new Date().getFullYear()} {profile.name}</span>
             </div>
             <div>
-              <span>Last Update: June 2026</span>
+              <span>{siteCopy.footer.lastUpdatedLabel}</span>
             </div>
           </footer>
         </div>

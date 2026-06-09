@@ -1,4 +1,4 @@
-import { ProfileInfo } from "../types";
+import { NavItem, ProfileInfo } from "../types";
 import { Github, Linkedin, Globe, Menu, X, Sparkles, User, GraduationCap, BookOpen, Heart, Code } from "lucide-react";
 
 interface SidebarProps {
@@ -9,6 +9,7 @@ interface SidebarProps {
   setIsOpen: (open: boolean) => void;
   customizing: boolean;
   setCustomizing: (val: boolean) => void;
+  navigation: NavItem[];
 }
 
 export default function Sidebar({
@@ -19,13 +20,19 @@ export default function Sidebar({
   setIsOpen,
   customizing,
   setCustomizing,
+  navigation,
 }: SidebarProps) {
-  const menuItems = [
-    { id: "home", label: "Home", icon: User },
-    { id: "education", label: "Education", icon: GraduationCap },
-    { id: "teaching", label: "Teaching", icon: BookOpen },
-    { id: "hobby", label: "Hobbies", icon: Heart },
-  ];
+  const menuIcons = {
+    home: User,
+    education: GraduationCap,
+    teaching: BookOpen,
+    hobby: Heart,
+  };
+
+  const menuItems = navigation.map((item) => ({
+    ...item,
+    icon: menuIcons[item.id as keyof typeof menuIcons] || User,
+  }));
 
   return (
     <>

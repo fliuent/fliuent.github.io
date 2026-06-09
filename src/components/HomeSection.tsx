@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { ProfileInfo, Project } from "../types";
+import { ProfileInfo, Project, SiteCopy } from "../types";
 import { Mail, MapPin, Phone, MessageSquarePlus, Send, MessageSquareDot, CheckSquare, Sparkles, FolderKanban, Link as LinkIcon } from "lucide-react";
 import { motion } from "motion/react";
 
 interface HomeSectionProps {
   profile: ProfileInfo;
   projects: Project[];
+  copy: SiteCopy;
 }
 
 interface Message {
@@ -16,7 +17,7 @@ interface Message {
   date: string;
 }
 
-export default function HomeSection({ profile, projects }: HomeSectionProps) {
+export default function HomeSection({ profile, projects, copy }: HomeSectionProps) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -63,10 +64,6 @@ export default function HomeSection({ profile, projects }: HomeSectionProps) {
     setTimeout(() => setSubmitted(false), 4000);
   };
 
-  const researchInterests = [
-    { title: "Probability", desc: "Study of random processes, measure theory, and stochastic calculus." },
-    { title: "Random Matrix Theory", desc: "Spectral properties of random matrices, universal scaling, and mechanical fluctuations." },
-  ];
 
   return (
     <motion.div
@@ -84,10 +81,10 @@ export default function HomeSection({ profile, projects }: HomeSectionProps) {
         <div className="max-w-2xl">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-semibold mb-4">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Graduate Portfolio</span>
+            <span>{copy.sections.homeBadge}</span>
           </div>
           <h1 className="font-heading text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight leading-none mb-3">
-            Welcome, I'm {profile.name}
+            {copy.home.welcomePrefix} {profile.name}
           </h1>
           <p className="text-sm md:text-base text-gray-500 font-medium">
             {profile.title}
@@ -98,7 +95,7 @@ export default function HomeSection({ profile, projects }: HomeSectionProps) {
       {/* Narrative Biography Statement */}
       <section className="bg-white rounded-2xl p-6 md:p-8 border border-gray-100 shadow-xs" id="biography">
         <h2 className="font-heading text-xl md:text-2xl font-bold text-gray-900 border-b border-gray-100 pb-3 mb-4">
-          Biography
+          {copy.sections.biography}
         </h2>
         <p className="text-gray-600 leading-relaxed text-sm md:text-[15px] whitespace-pre-line">
           {profile.bio}
@@ -110,7 +107,7 @@ export default function HomeSection({ profile, projects }: HomeSectionProps) {
         {/* Contact info cards */}
         <div className="lg:col-span-6 bg-white rounded-2xl p-6 border border-gray-100 shadow-xs" id="contact-details">
           <h2 className="font-heading text-lg font-bold text-gray-900 pb-2 mb-4 border-b border-gray-100">
-            Email
+            {copy.sections.email}
           </h2>
           <div className="flex items-center gap-3">
             <div className="p-2.5 bg-blue-50 text-[#007bfe] rounded-lg">
@@ -125,11 +122,11 @@ export default function HomeSection({ profile, projects }: HomeSectionProps) {
         {/* Focus Areas */}
         <div className="lg:col-span-6 bg-white rounded-2xl p-6 border border-gray-100 shadow-xs" id="scientific-interests">
           <h2 className="font-heading text-lg font-bold text-gray-900 pb-2 mb-4 border-b border-gray-100">
-            Fields of Interest
+            {copy.sections.interests}
           </h2>
           <div className="flex items-center min-h-[44px]">
             <p className="text-sm md:text-base text-gray-700 font-medium">
-              Probability, Random Matrix Theory
+              {copy.home.interestsText}
             </p>
           </div>
         </div>
@@ -140,7 +137,7 @@ export default function HomeSection({ profile, projects }: HomeSectionProps) {
         <div className="flex items-center gap-3 border-b border-gray-100 pb-3">
           <FolderKanban className="w-5 h-5 text-[#007bfe]" />
           <h2 className="font-heading text-xl md:text-2xl font-bold text-[#007bfe]">
-            Personal Projects
+            {copy.sections.projects}
           </h2>
         </div>
 
@@ -148,7 +145,7 @@ export default function HomeSection({ profile, projects }: HomeSectionProps) {
           {projects.length === 0 || (projects.length === 1 && projects[0].title === "To Be Done.") ? (
             <div className="p-8 bg-gray-50/50 border border-dashed border-gray-200 rounded-2xl text-center">
               <span className="font-mono text-xs text-gray-400 font-semibold tracking-wider">
-                To Be Done.
+                {copy.home.emptyState}
               </span>
             </div>
           ) : (
@@ -203,7 +200,7 @@ export default function HomeSection({ profile, projects }: HomeSectionProps) {
         <div className="flex items-center gap-2 mb-5">
           <MessageSquarePlus className="w-5 h-5 text-[#007bfe]" />
           <h2 className="font-heading text-xl font-bold text-gray-900">
-            Send a Message or Question
+            {copy.sections.guestbook}
           </h2>
         </div>
 
