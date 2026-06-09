@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <!-- Circular Cream/Warm Beige Background -->
+  <circle cx="200" cy="200" r="195" fill="#FAF5EF" />
+
+  <!-- Chibi Shoulders & Neck -->
+  <path d="M170,290 L230,290 L225,320 L175,320 Z" fill="#FADCCA" /> <!-- Neck -->
+  <path d="M110,345 Q200,310 290,345 L290,400 L110,400 Z" fill="#FFFFFF" /> <!-- White T-shirt -->
+
+  <!-- Light-Blue Backpack/Overall Straps -->
+  <!-- Left Strap -->
+  <path d="M140,323 Q152,328 152,360 L152,400 L134,400 L134,360 C134,335 137,326 140,323 Z" fill="#5AA4E7" />
+  <!-- Right Strap -->
+  <path d="M260,323 Q248,328 248,360 L248,400 L266,400 L266,360 C266,335 263,326 260,323 Z" fill="#5AA4E7" />
+
+  <!-- Shadow below chin on neck -->
+  <path d="M175,310 Q200,322 225,310 L220,320 L180,320 Z" fill="#E8BBA3" />
+
+  <!-- Cute Chibi Face -->
+  <path d="M115,190 Q112,280 200,282 Q288,280 285,190 C285,170 280,150 200,150 C120,150 115,170 115,190 Z" fill="#FFE3D1" />
+
+  <!-- Cute Rosy Cheek Blush -->
+  <ellipse cx="145" cy="245" rx="15" ry="8" fill="#FFAC9D" opacity="0.6" />
+  <ellipse cx="255" cy="245" rx="15" ry="8" fill="#FFAC9D" opacity="0.6" />
+
+  <!-- Anime Eyes -->
+  <!-- Left Eye -->
+  <g>
+    <!-- Lash -->
+    <path d="M135,210 Q155,192 175,210" fill="none" stroke="#2B2B2B" stroke-width="5.5" stroke-linecap="round" />
+    <!-- Pupil -->
+    <ellipse cx="155" cy="222" rx="14" ry="17" fill="#422C1A" />
+    <ellipse cx="155" cy="222" rx="11" ry="14" fill="#24150A" />
+    <!-- Eye Highlights -->
+    <circle cx="150" cy="215" r="5" fill="#FFFFFF" />
+    <circle cx="160" cy="228" r="2.5" fill="#FFFFFF" />
+  </g>
+  <!-- Right Eye -->
+  <g>
+    <!-- Lash -->
+    <path d="M225,210 Q245,192 265,210" fill="none" stroke="#2B2B2B" stroke-width="5.5" stroke-linecap="round" />
+    <!-- Pupil -->
+    <ellipse cx="245" cy="222" rx="14" ry="17" fill="#422C1A" />
+    <ellipse cx="245" cy="222" rx="11" ry="14" fill="#24150A" />
+    <!-- Eye Highlights -->
+    <circle cx="240" cy="215" r="5" fill="#FFFFFF" />
+    <circle cx="250" cy="228" r="2.5" fill="#FFFFFF" />
+  </g>
+
+  <!-- Happy Smile / Little Chibi Mouth -->
+  <path d="M192,252 Q200,259 208,252" fill="none" stroke="#2B2B2B" stroke-width="3" stroke-linecap="round" />
+
+  <!-- Cute Nose -->
+  <path d="M197,236 Q200,238 203,236" fill="none" stroke="#E8BBA3" stroke-width="2.5" stroke-linecap="round" />
+
+  <!-- Glasses (Black-rimmed round spectacles) -->
+  <g>
+    <!-- Left Rim -->
+    <circle cx="155" cy="220" r="26" fill="none" stroke="#1E1E1E" stroke-width="5" />
+    <!-- Right Rim -->
+    <circle cx="245" cy="220" r="26" fill="none" stroke="#1E1E1E" stroke-width="5" />
+    <!-- Bridge Connection -->
+    <path d="M181,220 L219,220" fill="none" stroke="#1E1E1E" stroke-width="5" stroke-linecap="round" />
+    <!-- Side stems -->
+    <path d="M129,220 L115,213" fill="none" stroke="#1E1E1E" stroke-width="4.5" stroke-linecap="round" />
+    <path d="M271,220 L285,213" fill="none" stroke="#1E1E1E" stroke-width="4.5" stroke-linecap="round" />
+  </g>
+
+  <!-- Side Ears -->
+  <path d="M115,200 Q100,195 105,212 Q110,225 117,215" fill="#FFE3D1" />
+  <path d="M285,200 Q300,195 295,212 Q290,225 283,215" fill="#FFE3D1" />
+
+  <!-- Chibi Anime Hair (Spiky short black locks) -->
+  <!-- Back Hair -->
+  <path d="M105,210 Q85,150 140,95 Q200,60 260,95 Q315,150 295,210 Q280,240 286,200 C286,110 114,110 114,200 Z" fill="#1C1E20" />
+
+  <!-- Front Bangs/Spikes (Styled exactly like cartoon character) -->
+  <g fill="#25282B">
+    <!-- Base Head Hair Volume -->
+    <path d="M110,185 C108,130 140,80 200,80 C260,80 292,130 290,185 C295,145 285,115 250,95 C220,80 180,80 150,95 C115,115 105,145 110,185 Z" />
+
+    <!-- Bang Block Left -->
+    <path d="M110,160 Q130,155 135,175 Q140,195 125,200 Q120,180 110,165 Z" />
+
+    <!-- Bang Block Middle-Left -->
+    <path d="M125,150 Q160,150 162,185 Q164,210 152,215 Q145,195 125,150 Z" />
+
+    <!-- Center forehead Bang Spike (Classic anime look) -->
+    <path d="M155,130 Q192,135 194,202 Q196,218 184,218 Q174,185 155,130 Z" />
+
+    <!-- Center-Right Forehead Bang Spike -->
+    <path d="M190,130 Q208,135 210,195 Q212,212 201,212 Q195,185 190,130 Z" />
+
+    <!-- Bang Block Middle-Right -->
+    <path d="M232,150 Q238,150 248,185 Q252,205 240,212 Q232,192 232,150 Z" />
+
+    <!-- Bang Block Right -->
+    <path d="M280,165 Q265,155 260,175 Q255,195 270,198 Q275,180 280,165 Z" />
+
+    <!-- Top Hair Spikes for dynamic volume -->
+    <path d="M185,82 Q200,55 215,82 Z" />
+    <path d="M150,92 Q170,68 180,95 Z" />
+    <path d="M210,90 Q225,72 235,95 Z" />
+  </g>
+
+  <!-- Hair Highlights (soft warm gray) for modern high-quality depth -->
+  <path d="M142,105 Q175,88 200,88 Q225,88 245,102 Q215,95 200,95 Q175,95 142,105 Z" fill="#585D63" opacity="0.6" />
+  <path d="M155,115 Q175,104 200,104 Q225,104 235,112 M180,120 Q200,113 210,120" fill="none" stroke="#585D63" stroke-width="3" stroke-linecap="round" opacity="0.4" />
+</svg>
