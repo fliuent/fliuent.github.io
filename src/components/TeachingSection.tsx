@@ -1,52 +1,15 @@
 import React, { useState } from "react";
-import { TeachingExperience } from "../types";
+import { SiteCopy, TeachingExperience } from "../types";
 import { BookOpen, HelpCircle, ChevronRight, GraduationCap, Star, ClipboardCheck, Sparkles, X, Heart } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 interface TeachingSectionProps {
   teaching: TeachingExperience[];
+  copy: SiteCopy;
 }
 
-export default function TeachingSection({ teaching }: TeachingSectionProps) {
+export default function TeachingSection({ teaching, copy }: TeachingSectionProps) {
   const [activeDialog, setActiveDialog] = useState<"duties" | "evaluation" | null>(null);
-
-  // Hardcoded real metrics/details matching the requested buttons for full professional fidelity!
-  const taDuties = [
-    {
-      univ: "UCSD",
-      tasks: [
-        "Led weekly discussion sessions for 20+ engineering undergraduates.",
-        "Graded exams, quizzes, and weekly homework assignments with strict mechanical guidelines.",
-        "Held office hours to help students resolve equations, state parameters, and vector systems."
-      ]
-    },
-    {
-      univ: "USTC",
-      tasks: [
-        "Prepared laboratory equipment and supervised weekly physics experiments for undergraduate classes.",
-        "Conducted homework evaluation, tutorial presentation, and clarified difficult optics / solid-state physics concepts.",
-        "Formulated comprehensive reference sheets, scoring guides, and MATLAB/Python simulation scripts."
-      ]
-    }
-  ];
-
-  const evaluations = [
-    {
-      metric: "Overall TA Approval Rating",
-      value: "96.4%",
-      details: "Consistently rated in the top decile of department teaching assistants for clarity and responsiveness."
-    },
-    {
-      metric: "Student Comments Quote",
-      value: "Excellent Guidance!",
-      details: "'Fengkai was patient in explaining complex mechanical diagrams and multi-stage physics equations during late office hours.'"
-    },
-    {
-      metric: "Average Response Latency",
-      value: "< 2 Hours",
-      details: "Maintained active communication on student forums (Piazza) resolving queries promptly."
-    }
-  ];
 
   return (
     <motion.div
@@ -61,12 +24,12 @@ export default function TeachingSection({ teaching }: TeachingSectionProps) {
         <div className="flex items-center gap-3 border-b border-gray-100 pb-3">
           <BookOpen className="w-6 h-6 text-[#007bfe]" />
           <h2 className="font-heading text-2xl font-bold text-[#007bfe]" id="teaching-title">
-            Teaching Experience
+            {copy.sections.teaching}
           </h2>
         </div>
         
         <p className="text-sm md:text-[15px] text-gray-600 font-sans leading-relaxed">
-          I have about two years of Teaching Assistant experience, the list is as follows.
+          {copy.teaching.intro}
         </p>
       </section>
 
@@ -77,19 +40,19 @@ export default function TeachingSection({ teaching }: TeachingSectionProps) {
             <thead>
               <tr className="border-b border-gray-100 bg-[#fafafc]">
                 <th className="px-5 py-4 text-xs font-bold font-sans text-gray-600 uppercase tracking-wider min-w-[240px]">
-                  Course Name (# of students)
+                  {copy.teaching.columns.course}
                 </th>
                 <th className="px-5 py-4 text-xs font-bold font-sans text-gray-600 uppercase tracking-wider">
-                  Instructor
+                  {copy.teaching.columns.instructor}
                 </th>
                 <th className="px-5 py-4 text-xs font-bold font-sans text-gray-600 uppercase tracking-wider">
-                  Position
+                  {copy.teaching.columns.position}
                 </th>
                 <th className="px-5 py-4 text-xs font-bold font-sans text-gray-600 uppercase tracking-wider">
-                  Univ
+                  {copy.teaching.columns.university}
                 </th>
                 <th className="px-5 py-4 text-xs font-bold font-sans text-gray-600 uppercase tracking-wider">
-                  Time
+                  {copy.teaching.columns.time}
                 </th>
               </tr>
             </thead>
@@ -99,7 +62,7 @@ export default function TeachingSection({ teaching }: TeachingSectionProps) {
                   key={row.id} 
                   className="hover:bg-blue-50/5 transition-colors group"
                 >
-                  {/* Course Name (# of students) */}
+                  {/* {copy.teaching.columns.course} */}
                   <td className="px-5 py-4 font-sans font-medium text-gray-800">
                     <span className="text-[#007bfe] hover:underline cursor-pointer">
                       {row.courseName}
@@ -109,12 +72,12 @@ export default function TeachingSection({ teaching }: TeachingSectionProps) {
                     )}
                   </td>
                   
-                  {/* Instructor */}
+                  {/* {copy.teaching.columns.instructor} */}
                   <td className="px-5 py-4 font-sans text-gray-600">
                     {row.instructor || "None"}
                   </td>
                   
-                  {/* Position Badge */}
+                  {/* {copy.teaching.columns.position} Badge */}
                   <td className="px-5 py-4">
                     <span className={`inline-flex px-2.5 py-1 rounded-md text-xs font-mono font-medium ${
                       row.role.includes("Reader") 
@@ -125,12 +88,12 @@ export default function TeachingSection({ teaching }: TeachingSectionProps) {
                     </span>
                   </td>
                   
-                  {/* Univ */}
+                  {/* {copy.teaching.columns.university} */}
                   <td className="px-5 py-4 font-mono text-xs font-semibold text-gray-500">
                     {row.institution}
                   </td>
                   
-                  {/* Time / Period */}
+                  {/* {copy.teaching.columns.time} / Period */}
                   <td className="px-5 py-4 font-sans text-xs text-gray-500 leading-relaxed max-w-[150px] break-words whitespace-pre-line">
                     {row.period}
                   </td>
@@ -154,7 +117,7 @@ export default function TeachingSection({ teaching }: TeachingSectionProps) {
           id="btn-ta-duties"
         >
           <ClipboardCheck className="w-3.5 h-3.5 shrink-0" />
-          <span>TA duties</span>
+          <span>{copy.teaching.dutiesButton}</span>
         </button>
 
         {/* Students's Evaluation action button */}
@@ -168,7 +131,7 @@ export default function TeachingSection({ teaching }: TeachingSectionProps) {
           id="btn-students-eval"
         >
           <Star className="w-3.5 h-3.5 shrink-0" />
-          <span>Students's Evaluation</span>
+          <span>{copy.teaching.evaluationsButton}</span>
         </button>
       </div>
 
@@ -188,10 +151,10 @@ export default function TeachingSection({ teaching }: TeachingSectionProps) {
             <div className="flex items-center justify-between border-b border-slate-800 pb-3">
               <div className="flex items-center gap-2">
                 <span className="p-1 px-2 bg-indigo-500/20 text-indigo-300 rounded-md text-[10px] font-mono font-bold uppercase tracking-wider">
-                  {activeDialog === "duties" ? "Recitation & Lab Tasks" : "Student Comments & Metrics"}
+                  {activeDialog === "duties" ? copy.teaching.dutiesLabel : copy.teaching.evaluationsLabel}
                 </span>
                 <h4 className="font-heading text-sm sm:text-base font-bold text-white">
-                  {activeDialog === "duties" ? "Official Teaching Assistant Duties" : "Evaluation Summaries"}
+                  {activeDialog === "duties" ? copy.teaching.dutiesTitle : copy.teaching.evaluationsTitle}
                 </h4>
               </div>
               <button
@@ -206,11 +169,11 @@ export default function TeachingSection({ teaching }: TeachingSectionProps) {
             {/* Displaying detailed structured content based on selection */}
             {activeDialog === "duties" ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-1">
-                {taDuties.map((item, idx) => (
+                {copy.teaching.duties.map((item, idx) => (
                   <div key={idx} className="space-y-2">
                     <span className="text-xs font-mono font-bold text-blue-400 flex items-center gap-1">
                       <GraduationCap className="w-3.5 h-3.5 shrink-0" />
-                      <span>{item.univ} System Core Responsibilities</span>
+                      <span>{item.university} System Core Responsibilities</span>
                     </span>
                     <ul className="space-y-2 text-xs text-slate-300">
                       {item.tasks.map((task, tIdx) => (
@@ -225,7 +188,7 @@ export default function TeachingSection({ teaching }: TeachingSectionProps) {
               </div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-1">
-                {evaluations.map((item, idx) => (
+                {copy.teaching.evaluations.map((item, idx) => (
                   <div key={idx} className="bg-slate-950 p-4 border border-slate-850 rounded-xl space-y-1">
                     <span className="text-[10px] font-mono text-slate-500 uppercase block tracking-wider">
                       {item.metric}

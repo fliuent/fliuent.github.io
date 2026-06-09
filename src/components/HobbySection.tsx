@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "motion/react";
 
 interface HobbySectionProps {
   hobbies: Hobby[];
+  title: string;
 }
 
 interface Particle {
@@ -16,7 +17,7 @@ interface Particle {
   color: string;
 }
 
-export default function HobbySection({ hobbies }: HobbySectionProps) {
+export default function HobbySection({ hobbies, title }: HobbySectionProps) {
   const [selectedHobbyId, setSelectedHobbyId] = useState<string>(hobbies[0]?.id || "");
   const [activeSimulation, setActiveSimulation] = useState(false);
   const [gravityStr, setGravityStr] = useState(0.4); // Gravity parameter
@@ -214,7 +215,7 @@ export default function HobbySection({ hobbies }: HobbySectionProps) {
         <div className="flex items-center gap-3 border-b border-gray-100 pb-3">
           <Heart className="w-6 h-6 text-[#007bfe]" />
           <h2 className="font-heading text-2xl font-bold text-[#007bfe]" id="hobby-title">
-            Hobbies & Recreation
+            {title}
           </h2>
         </div>
 

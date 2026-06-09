@@ -1,5 +1,6 @@
 export interface ProfileInfo {
   name: string;
+  avatarPath?: string;
   avatarUrl: string;
   title: string;
   email: string;
@@ -75,4 +76,63 @@ export interface Hobby {
   imageUrl?: string;
   category: string;
   iconName: string; // Lucide icon name
+}
+
+export interface NavItem {
+  id: string;
+  label: string;
+}
+
+export interface TeachingDutyGroup {
+  university: string;
+  tasks: string[];
+}
+
+export interface TeachingEvaluation {
+  metric: string;
+  value: string;
+  details: string;
+}
+
+export interface SiteCopy {
+  navigation: NavItem[];
+  sections: {
+    homeBadge: string;
+    biography: string;
+    email: string;
+    interests: string;
+    projects: string;
+    guestbook: string;
+    education: string;
+    courses: string;
+    awards: string;
+    teaching: string;
+    hobbies: string;
+  };
+  home: {
+    welcomePrefix: string;
+    interestsText: string;
+    emptyState: string;
+  };
+  teaching: {
+    intro: string;
+    columns: {
+      course: string;
+      instructor: string;
+      position: string;
+      university: string;
+      time: string;
+    };
+    dutiesButton: string;
+    evaluationsButton: string;
+    dutiesLabel: string;
+    evaluationsLabel: string;
+    dutiesTitle: string;
+    evaluationsTitle: string;
+    duties: TeachingDutyGroup[];
+    evaluations: TeachingEvaluation[];
+  };
+  footer: {
+    lastUpdatedLabel: string;
+  };
 }

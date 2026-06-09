@@ -1,15 +1,108 @@
-import { ProfileInfo, Degree, CourseCategory, Award, Project, TeachingExperience, Hobby } from "./types";
-import chibiAvatar from "./chibi_avatar.svg";
+import {
+  Award,
+  CourseCategory,
+  Degree,
+  Hobby,
+  Project,
+  ProfileInfo,
+  SiteCopy,
+  TeachingExperience,
+} from "../types";
+
+const avatarPath = "../chibi_avatar.svg";
+const avatarUrl = new URL(avatarPath, import.meta.url).href;
+
+export const siteCopy: SiteCopy = {
+  navigation: [
+    { id: "home", label: "Home" },
+    { id: "education", label: "Education" },
+    { id: "teaching", label: "Teaching" },
+    { id: "hobby", label: "Hobbies" },
+  ],
+  sections: {
+    homeBadge: "Graduate Portfolio",
+    biography: "Biography",
+    email: "Email",
+    interests: "Fields of Interest",
+    projects: "Personal Projects",
+    guestbook: "Send a Message or Question",
+    education: "Education",
+    courses: "Courses",
+    awards: "Awards",
+    teaching: "Teaching Experience",
+    hobbies: "Hobbies & Recreation",
+  },
+  home: {
+    welcomePrefix: "Welcome, I'm",
+    interestsText: "Probability, Random Matrix Theory",
+    emptyState: "To Be Done.",
+  },
+  teaching: {
+    intro: "I have about two years of Teaching Assistant experience, the list is as follows.",
+    columns: {
+      course: "Course Name (# of students)",
+      instructor: "Instructor",
+      position: "Position",
+      university: "Univ",
+      time: "Time",
+    },
+    dutiesButton: "TA duties",
+    evaluationsButton: "Students's Evaluation",
+    dutiesLabel: "Recitation & Lab Tasks",
+    evaluationsLabel: "Student Comments & Metrics",
+    dutiesTitle: "Official Teaching Assistant Duties",
+    evaluationsTitle: "Evaluation Summaries",
+    duties: [
+      {
+        university: "UCSD",
+        tasks: [
+          "Led weekly discussion sessions for 20+ engineering undergraduates.",
+          "Graded exams, quizzes, and weekly homework assignments with strict mechanical guidelines.",
+          "Held office hours to help students resolve equations, state parameters, and vector systems.",
+        ],
+      },
+      {
+        university: "USTC",
+        tasks: [
+          "Prepared laboratory equipment and supervised weekly physics experiments for undergraduate classes.",
+          "Conducted homework evaluation, tutorial presentation, and clarified difficult optics / solid-state physics concepts.",
+          "Formulated comprehensive reference sheets, scoring guides, and MATLAB/Python simulation scripts.",
+        ],
+      },
+    ],
+    evaluations: [
+      {
+        metric: "Overall TA Approval Rating",
+        value: "96.4%",
+        details: "Consistently rated in the top decile of department teaching assistants for clarity and responsiveness.",
+      },
+      {
+        metric: "Student Comments Quote",
+        value: "Excellent Guidance!",
+        details: "'Fengkai was patient in explaining complex mechanical diagrams and multi-stage physics equations during late office hours.'",
+      },
+      {
+        metric: "Average Response Latency",
+        value: "< 2 Hours",
+        details: "Maintained active communication on student forums (Piazza) resolving queries promptly.",
+      },
+    ],
+  },
+  footer: {
+    lastUpdatedLabel: "Last Update: June 2026",
+  },
+};
 
 export const initialProfile: ProfileInfo = {
   name: "Fengkai Liu",
   title: "PhD Student in Mathematics at HKUST",
-  avatarUrl: chibiAvatar, // beautiful chibi avatar matching user requested sketch details
+  avatarPath,
+  avatarUrl,
   email: "fliuar@connect.ust.hk",
   phone: "",
   address: "",
   bio: "Hi, I am Fengkai Liu.",
-  github: "https://github.com/wxdins", // personal github link
+  github: "https://github.com/wxdins",
   linkedin: "https://linkedin.com/in/fengkai-liu",
   website: "https://fengkai.connect.ust.hk",
 };
@@ -20,7 +113,7 @@ export const initialDegrees: Degree[] = [
     university: "Hong Kong University of Science and Technology",
     degreeName: "Doctor of Philosophy",
     field: "Mathematics",
-    gpa: "", // GPA field left empty as requested
+    gpa: "",
     location: "Clear Water Bay, Hong Kong",
     period: "Aug 2024 - Now",
     supervisor: "Ke Wang",
@@ -30,7 +123,7 @@ export const initialDegrees: Degree[] = [
     university: "University of Science and Technology of China",
     degreeName: "Bachelor of Science",
     field: "Mathematics and Applied Mathematics",
-    gpa: "", // GPA field left empty as requested
+    gpa: "",
     location: "Hefei, China",
     period: "Sept 2020 - Jun 2024",
   },
@@ -46,7 +139,7 @@ export const initialCourseCategories: CourseCategory[] = [
         title: "To Be Done.",
         platform: "HKUST / USTC",
         year: "Aug 2024 - Present",
-      }
+      },
     ],
   },
 ];
