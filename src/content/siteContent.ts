@@ -1,3 +1,4 @@
+import profileImageUrl from "../profile-image.png";
 import {
   Award,
   CourseCategory,
@@ -10,7 +11,7 @@ import {
 } from "../types";
 
 const avatarPath = "../profile-image.png";
-const avatarUrl = new URL(avatarPath, import.meta.url).href;
+const avatarUrl = profileImageUrl;
 
 export const siteCopy: SiteCopy = {
   navigation: [

@@ -39,12 +39,11 @@ export default function Sidebar({
       {/* Mobile Top Header Bar */}
       <header className="md:hidden fixed top-0 left-0 right-0 h-16 bg-white border-b border-gray-100 px-4 flex items-center justify-between z-20" id="mobile-header">
         <div className="flex items-center gap-3">
-          {/* Cosmic gradient abstract representation of profile avatar */}
-          <div className="relative w-9 h-9 rounded-full overflow-hidden bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 border border-gray-100 flex-shrink-0">
+          <div className="relative w-9 h-9 rounded-full overflow-hidden bg-white border border-gray-100 flex-shrink-0">
             <img
               src={profile.avatarUrl}
               alt={profile.name}
-              className="w-full h-full object-cover mix-blend-normal"
+              className="block w-full h-full object-cover object-center"
               referrerPolicy="no-referrer"
             />
           </div>
@@ -99,13 +98,12 @@ export default function Sidebar({
 
           {/* Profile Section */}
           <div className="flex flex-col items-center text-center mt-2 md:mt-0">
-            {/* Round Avatar Container with custom starry/cosmic overlay box shadows */}
             <div className="relative w-32 h-32 md:w-36 md:h-36 rounded-full p-[3px] bg-gradient-to-tr from-blue-500 via-indigo-600 to-purple-500 shadow-md">
-              <div className="w-full h-full rounded-full overflow-hidden bg-slate-900 border-2 border-white">
+              <div className="w-full h-full rounded-full overflow-hidden bg-white border-2 border-white">
                 <img
                   src={profile.avatarUrl}
                   alt={profile.name}
-                  className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
+                  className="block w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-500"
                   referrerPolicy="no-referrer"
                 />
               </div>

@@ -44,7 +44,7 @@ export default function App() {
 
   // Load from local storage on render
   useEffect(() => {
-    const loadState = <T,>(key: string, setter: (val: T) => void, fallback: T) => {
+    const loadState = <T,>(key: string, setter: (val: T) => void) => {
       const saved = localStorage.getItem(key);
       if (saved) {
         try {
@@ -55,13 +55,27 @@ export default function App() {
       }
     };
 
-    loadState("por_profile", setProfile, initialProfile);
-    loadState("por_degrees", setDegrees, initialDegrees);
-    loadState("por_courseCategories", setCourseCategories, initialCourseCategories);
-    loadState("por_awards", setAwards, initialAwards);
-    loadState("por_projects", setProjects, initialProjects);
-    loadState("por_teaching", setTeaching, initialTeaching);
-    loadState("por_hobbies", setHobbies, initialHobbies);
+    const savedProfile = localStorage.getItem("por_profile");
+    if (savedProfile) {
+      try {
+        const parsedProfile = JSON.parse(savedProfile) as ProfileInfo;
+        setProfile({
+          ...parsedProfile,
+          avatarUrl:
+            parsedProfile.avatarPath === initialProfile.avatarPath
+              ? initialProfile.avatarUrl
+              : parsedProfile.avatarUrl || initialProfile.avatarUrl,
+        });
+      } catch (e) {
+        console.error("Error loading state for por_profile", e);
+      }
+    }
+    loadState("por_degrees", setDegrees);
+    loadState("por_courseCategories", setCourseCategories);
+    loadState("por_awards", setAwards);
+    loadState("por_projects", setProjects);
+    loadState("por_teaching", setTeaching);
+    loadState("por_hobbies", setHobbies);
   }, []);
 
   // Sync to local storage state updates
