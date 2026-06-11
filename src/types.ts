@@ -1,3 +1,9 @@
+export interface SocialLinks {
+  github: string;
+  linkedin: string;
+  website: string;
+}
+
 export interface ProfileInfo {
   name: string;
   avatarPath?: string;
@@ -7,9 +13,7 @@ export interface ProfileInfo {
   phone?: string;
   address: string;
   bio: string;
-  github: string;
-  linkedin: string;
-  website: string;
+  socialLinks: SocialLinks;
 }
 
 export interface Degree {
@@ -123,6 +127,7 @@ export interface SiteCopy {
       university: string;
       time: string;
     };
+    showTeachingButtons: boolean;
     dutiesButton: string;
     evaluationsButton: string;
     dutiesLabel: string;

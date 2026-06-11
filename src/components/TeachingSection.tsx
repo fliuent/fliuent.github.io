@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { SiteCopy, TeachingExperience } from "../types";
-import { BookOpen, HelpCircle, ChevronRight, GraduationCap, Star, ClipboardCheck, Sparkles, X, Heart } from "lucide-react";
+import { BookOpen, GraduationCap, Star, ClipboardCheck, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 interface TeachingSectionProps {
@@ -105,39 +105,41 @@ export default function TeachingSection({ teaching, copy }: TeachingSectionProps
       </div>
 
       {/* 3. Bottom Interactive Action Buttons */}
-      <div className="flex flex-wrap items-center gap-3 pt-3">
-        {/* TA duties action button */}
-        <button
-          onClick={() => setActiveDialog("duties")}
-          className={`px-4 py-2 text-xs font-medium rounded-lg border transition-all duration-200 shadow-3xs cursor-pointer flex items-center gap-1.5 ${
-            activeDialog === "duties"
-              ? "bg-[#007bfe] text-white border-[#007bfe]"
-              : "bg-white text-gray-700 hover:bg-gray-50/80 border-gray-200"
-          }`}
-          id="btn-ta-duties"
-        >
-          <ClipboardCheck className="w-3.5 h-3.5 shrink-0" />
-          <span>{copy.teaching.dutiesButton}</span>
-        </button>
+      {copy.teaching.showTeachingButtons && (
+        <div className="flex flex-wrap items-center gap-3 pt-3">
+          {/* TA duties action button */}
+          <button
+            onClick={() => setActiveDialog("duties")}
+            className={`px-4 py-2 text-xs font-medium rounded-lg border transition-all duration-200 shadow-3xs cursor-pointer flex items-center gap-1.5 ${
+              activeDialog === "duties"
+                ? "bg-[#007bfe] text-white border-[#007bfe]"
+                : "bg-white text-gray-700 hover:bg-gray-50/80 border-gray-200"
+            }`}
+            id="btn-ta-duties"
+          >
+            <ClipboardCheck className="w-3.5 h-3.5 shrink-0" />
+            <span>{copy.teaching.dutiesButton}</span>
+          </button>
 
-        {/* Students's Evaluation action button */}
-        <button
-          onClick={() => setActiveDialog("evaluation")}
-          className={`px-4 py-2 text-xs font-medium rounded-lg border transition-all duration-200 shadow-3xs cursor-pointer flex items-center gap-1.5 ${
-            activeDialog === "evaluation"
-              ? "bg-[#007bfe] text-white border-[#007bfe]"
-              : "bg-white text-gray-700 hover:bg-gray-50/80 border-gray-200"
-          }`}
-          id="btn-students-eval"
-        >
-          <Star className="w-3.5 h-3.5 shrink-0" />
-          <span>{copy.teaching.evaluationsButton}</span>
-        </button>
-      </div>
+          {/* Students's Evaluation action button */}
+          <button
+            onClick={() => setActiveDialog("evaluation")}
+            className={`px-4 py-2 text-xs font-medium rounded-lg border transition-all duration-200 shadow-3xs cursor-pointer flex items-center gap-1.5 ${
+              activeDialog === "evaluation"
+                ? "bg-[#007bfe] text-white border-[#007bfe]"
+                : "bg-white text-gray-700 hover:bg-gray-50/80 border-gray-200"
+            }`}
+            id="btn-students-eval"
+          >
+            <Star className="w-3.5 h-3.5 shrink-0" />
+            <span>{copy.teaching.evaluationsButton}</span>
+          </button>
+        </div>
+      )}
 
       {/* Interactive slides/info output panel */}
       <AnimatePresence mode="wait">
-        {activeDialog && (
+        {copy.teaching.showTeachingButtons && activeDialog && (
           <motion.div
             key={activeDialog}
             initial={{ opacity: 0, y: 10 }}

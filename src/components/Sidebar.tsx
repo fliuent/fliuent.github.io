@@ -1,5 +1,5 @@
 import { NavItem, ProfileInfo } from "../types";
-import { Github, Linkedin, Globe, Menu, X, Sparkles, User, GraduationCap, BookOpen, Heart, Code } from "lucide-react";
+import { Github, Linkedin, Globe, Menu, X, User, GraduationCap, BookOpen, Heart } from "lucide-react";
 
 interface SidebarProps {
   profile: ProfileInfo;
@@ -7,8 +7,6 @@ interface SidebarProps {
   setActiveTab: (tab: string) => void;
   isOpen: boolean; // mobile drawer state
   setIsOpen: (open: boolean) => void;
-  customizing: boolean;
-  setCustomizing: (val: boolean) => void;
   navigation: NavItem[];
 }
 
@@ -18,8 +16,6 @@ export default function Sidebar({
   setActiveTab,
   isOpen,
   setIsOpen,
-  customizing,
-  setCustomizing,
   navigation,
 }: SidebarProps) {
   const menuIcons = {
@@ -52,24 +48,13 @@ export default function Sidebar({
             <p className="text-[10px] text-gray-400 truncate max-w-[180px] font-mono">{profile.title}</p>
           </div>
         </div>
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => setCustomizing(!customizing)}
-            className={`p-2 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-colors ${
-              customizing ? "bg-amber-50 text-amber-700" : "bg-gray-50 text-gray-600 hover:bg-gray-100"
-            }`}
-            title="Toggle Customize Panel"
-          >
-            <Sparkles className="w-4 h-4" />
-          </button>
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="p-2 text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="p-2 text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors"
+          aria-label="Toggle menu"
+        >
+          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
       </header>
 
       {/* Backdrop for mobile drawer */}
@@ -115,9 +100,9 @@ export default function Sidebar({
 
             {/* Social Icons matching photo */}
             <div className="flex items-center gap-4 mt-3 text-gray-500">
-              {profile.github && (
+              {profile.socialLinks.github && (
                 <a
-                  href={profile.github}
+                  href={profile.socialLinks.github}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-gray-900 hover:scale-110 transition-all"
@@ -126,9 +111,9 @@ export default function Sidebar({
                   <Github className="w-5 h-5" />
                 </a>
               )}
-              {profile.linkedin && (
+              {profile.socialLinks.linkedin && (
                 <a
-                  href={profile.linkedin}
+                  href={profile.socialLinks.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-[#007bfe] hover:scale-110 transition-all"
@@ -137,9 +122,9 @@ export default function Sidebar({
                   <Linkedin className="w-5 h-5" />
                 </a>
               )}
-              {profile.website && (
+              {profile.socialLinks.website && (
                 <a
-                  href={profile.website}
+                  href={profile.socialLinks.website}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-emerald-600 hover:scale-110 transition-all"
@@ -177,24 +162,10 @@ export default function Sidebar({
           </nav>
         </div>
 
-        {/* Bottom copyright & customization panel triggers */}
-        <div className="space-y-4">
-          <button
-            onClick={() => setCustomizing(!customizing)}
-            className={`w-full flex items-center justify-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg border transition-all ${
-              customizing
-                ? "bg-amber-500 text-white border-amber-500 hover:bg-amber-600"
-                : "bg-white text-gray-700 border-gray-200 hover:bg-gray-50 shadow-xs"
-            }`}
-          >
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>{customizing ? "Close Customizer" : "Customize Content"}</span>
-          </button>
-
-          <div className="text-center font-mono text-[10px] text-gray-400">
-            <p>© {new Date().getFullYear()} {profile.name}</p>
-            <p className="mt-0.5">Last updated: June 2026</p>
-          </div>
+        {/* Bottom copyright */}
+        <div className="text-center font-mono text-[10px] text-gray-400">
+          <p>© {new Date().getFullYear()} {profile.name}</p>
+          <p className="mt-0.5">Last updated: June 2026</p>
         </div>
       </aside>
     </>

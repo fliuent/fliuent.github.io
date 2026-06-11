@@ -47,6 +47,7 @@ export const siteCopy: SiteCopy = {
       university: "Univ",
       time: "Time",
     },
+    showTeachingButtons: false,
     dutiesButton: "TA duties",
     evaluationsButton: "Students's Evaluation",
     dutiesLabel: "Recitation & Lab Tasks",
@@ -103,9 +104,11 @@ export const initialProfile: ProfileInfo = {
   phone: "",
   address: "",
   bio: "Hi, I am Fengkai Liu.",
-  github: "https://github.com/wxdins",
-  linkedin: "https://linkedin.com/in/fengkai-liu",
-  website: "https://fengkai.connect.ust.hk",
+  socialLinks: {
+    github: "https://github.com/fliuent/",
+    linkedin: "https://www.linkedin.com/",
+    website: "https://fliuent.github.io/",
+  },
 };
 
 export const initialDegrees: Degree[] = [
