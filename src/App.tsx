@@ -3,8 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect } from "react";
-import { ProfileInfo, Degree, CourseCategory, Award, Project, TeachingExperience, Hobby } from "./types";
+import { useState } from "react";
 import {
   initialProfile,
   initialDegrees,
@@ -20,8 +19,7 @@ import HomeSection from "./components/HomeSection";
 import EducationSection from "./components/EducationSection";
 import TeachingSection from "./components/TeachingSection";
 import HobbySection from "./components/HobbySection";
-import EditorPanel from "./components/EditorPanel";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence } from "motion/react";
 
 export default function App() {
   // Navigation active tab
@@ -30,118 +28,27 @@ export default function App() {
   // Mobile sidebar open state
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  // Customizer visible state
-  const [customizing, setCustomizing] = useState(false);
-
-  // Portfolio State hooks in sync with LocalStorage for full playability!
-  const [profile, setProfile] = useState<ProfileInfo>(initialProfile);
-  const [degrees, setDegrees] = useState<Degree[]>(initialDegrees);
-  const [courseCategories, setCourseCategories] = useState<CourseCategory[]>(initialCourseCategories);
-  const [awards, setAwards] = useState<Award[]>(initialAwards);
-  const [projects, setProjects] = useState<Project[]>(initialProjects);
-  const [teaching, setTeaching] = useState<TeachingExperience[]>(initialTeaching);
-  const [hobbies, setHobbies] = useState<Hobby[]>(initialHobbies);
-
-  // Load from local storage on render
-  useEffect(() => {
-    const loadState = <T,>(key: string, setter: (val: T) => void) => {
-      const saved = localStorage.getItem(key);
-      if (saved) {
-        try {
-          setter(JSON.parse(saved));
-        } catch (e) {
-          console.error(`Error loading state for ${key}`, e);
-        }
-      }
-    };
-
-    const savedProfile = localStorage.getItem("por_profile");
-    if (savedProfile) {
-      try {
-        const parsedProfile = JSON.parse(savedProfile) as ProfileInfo;
-        setProfile({
-          ...parsedProfile,
-          avatarUrl:
-            parsedProfile.avatarPath === initialProfile.avatarPath
-              ? initialProfile.avatarUrl
-              : parsedProfile.avatarUrl || initialProfile.avatarUrl,
-        });
-      } catch (e) {
-        console.error("Error loading state for por_profile", e);
-      }
-    }
-    loadState("por_degrees", setDegrees);
-    loadState("por_courseCategories", setCourseCategories);
-    loadState("por_awards", setAwards);
-    loadState("por_projects", setProjects);
-    loadState("por_teaching", setTeaching);
-    loadState("por_hobbies", setHobbies);
-  }, []);
-
-  // Sync to local storage state updates
-  useEffect(() => {
-    localStorage.setItem("por_profile", JSON.stringify(profile));
-  }, [profile]);
-  useEffect(() => {
-    localStorage.setItem("por_degrees", JSON.stringify(degrees));
-  }, [degrees]);
-  useEffect(() => {
-    localStorage.setItem("por_courseCategories", JSON.stringify(courseCategories));
-  }, [courseCategories]);
-  useEffect(() => {
-    localStorage.setItem("por_awards", JSON.stringify(awards));
-  }, [awards]);
-  useEffect(() => {
-    localStorage.setItem("por_projects", JSON.stringify(projects));
-  }, [projects]);
-  useEffect(() => {
-    localStorage.setItem("por_teaching", JSON.stringify(teaching));
-  }, [teaching]);
-  useEffect(() => {
-    localStorage.setItem("por_hobbies", JSON.stringify(hobbies));
-  }, [hobbies]);
-
-  // Handle Full Reset
-  const handleResetPortfolio = () => {
-    localStorage.removeItem("por_profile");
-    localStorage.removeItem("por_degrees");
-    localStorage.removeItem("por_courseCategories");
-    localStorage.removeItem("por_awards");
-    localStorage.removeItem("por_projects");
-    localStorage.removeItem("por_teaching");
-    localStorage.removeItem("por_hobbies");
-
-    setProfile(initialProfile);
-    setDegrees(initialDegrees);
-    setCourseCategories(initialCourseCategories);
-    setAwards(initialAwards);
-    setProjects(initialProjects);
-    setTeaching(initialTeaching);
-    setHobbies(initialHobbies);
-    setCustomizing(false);
-  };
-
   // Switch between rendered tabs
   const renderTabContent = () => {
     switch (activeTab) {
       case "home":
-        return <HomeSection profile={profile} projects={projects} copy={siteCopy} />;
+        return <HomeSection profile={initialProfile} projects={initialProjects} copy={siteCopy} />;
       case "education":
         return (
           <EducationSection
-            degrees={degrees}
-            courseCategories={courseCategories}
-            awards={awards}
+            degrees={initialDegrees}
+            courseCategories={initialCourseCategories}
+            awards={initialAwards}
             sections={siteCopy.sections}
             emptyState={siteCopy.home.emptyState}
           />
         );
       case "teaching":
-        return <TeachingSection teaching={teaching} copy={siteCopy} />;
+        return <TeachingSection teaching={initialTeaching} copy={siteCopy} />;
       case "hobby":
-        return <HobbySection hobbies={hobbies} title={siteCopy.sections.hobbies} />;
+        return <HobbySection hobbies={initialHobbies} title={siteCopy.sections.hobbies} />;
       default:
-        return <HomeSection profile={profile} projects={projects} copy={siteCopy} />;
+        return <HomeSection profile={initialProfile} projects={initialProjects} copy={siteCopy} />;
     }
   };
 
@@ -150,13 +57,11 @@ export default function App() {
       
       {/* Sidebar Navigation */}
       <Sidebar
-        profile={profile}
+        profile={initialProfile}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         isOpen={sidebarOpen}
         setIsOpen={setSidebarOpen}
-        customizing={customizing}
-        setCustomizing={setCustomizing}
         navigation={siteCopy.navigation}
       />
 
@@ -176,7 +81,7 @@ export default function App() {
           {/* Bottom Footer block matching image exactly */}
           <footer className="pt-8 border-t border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-[11px] font-mono text-gray-400">
             <div>
-              <span>© {new Date().getFullYear()} {profile.name}</span>
+              <span>© {new Date().getFullYear()} {initialProfile.name}</span>
             </div>
             <div>
               <span>{siteCopy.footer.lastUpdatedLabel}</span>
@@ -184,36 +89,6 @@ export default function App() {
           </footer>
         </div>
       </main>
-
-      {/* Slide-out Customization Panel side interface */}
-      <AnimatePresence>
-        {customizing && (
-          <motion.div
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 100 }}
-            transition={{ type: "spring", stiffness: 150, damping: 20 }}
-            className="fixed top-0 bottom-0 right-0 z-50 h-full w-full sm:max-w-md bg-white border-l border-gray-100 shadow-2xl flex"
-          >
-            <EditorPanel
-              profile={profile}
-              setProfile={setProfile}
-              degrees={degrees}
-              setDegrees={setDegrees}
-              awards={awards}
-              setAwards={setAwards}
-              projects={projects}
-              setProjects={setProjects}
-              teaching={teaching}
-              setTeaching={setTeaching}
-              hobbies={hobbies}
-              setHobbies={setHobbies}
-              onReset={handleResetPortfolio}
-              onClose={() => setCustomizing(false)}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }

@@ -27,9 +27,22 @@ You can edit:
 - `title` — the subtitle shown under your name.
 - `bio` — the biography/about paragraph.
 - `avatarPath` — the editable avatar file path string.
-- `email`, `github`, `linkedin`, and `website` — contact and social links.
+- `email` — contact email.
+- `socialLinks.github`, `socialLinks.linkedin`, and `socialLinks.website` — the three icon links shown under the avatar in the left sidebar.
 
-The current avatar uses the existing SVG already in the project. This PR does not add a new avatar image. If you change `avatarPath`, make sure the referenced file already exists and is web-friendly.
+The current avatar uses the existing image already in the project. Do not add or replace avatar image files unless you are intentionally making a separate media update. If you change `avatarPath`, make sure the referenced file already exists and is web-friendly.
+
+The sidebar icon links are grouped like this in `initialProfile`:
+
+```ts
+socialLinks: {
+  github: "https://github.com/fliuent/",
+  linkedin: "https://www.linkedin.com/",
+  website: "https://fliuent.github.io/",
+}
+```
+
+Update those three URL strings when you want the GitHub, LinkedIn, or globe/website icons to point somewhere else.
 
 ### Navigation labels and section titles
 
@@ -78,6 +91,14 @@ Each teaching entry controls one row in the teaching table. You can edit course 
 
 Teaching section intro text, button labels, duties, and evaluation summaries are in `siteCopy.teaching`.
 
+The two Teaching section buttons are currently hidden with:
+
+```ts
+showTeachingButtons: false
+```
+
+To re-enable the `TA duties` and `Students's Evaluation` buttons later, change that value to `true`. Then edit `dutiesButton`, `evaluationsButton`, `duties`, and `evaluations` in the same `siteCopy.teaching` section to update the button labels and panel content.
+
 ### Hobbies and life content
 
 Find `initialHobbies`.
@@ -91,6 +112,10 @@ Each hobby card has:
 - `iconName`
 
 For `iconName`, use one of the icons already supported by the component, such as `Sliders`, `Heart`, `Compass`, or `Telescope`.
+
+## Public visitor editing
+
+Public visitors should **not** have a `Customize Content` button. Site content should be changed in the repository by editing `src/content/siteContent.ts`, rebuilding, and redeploying. The old visitor-facing customization panel and its portfolio `localStorage` state have been removed so readers cannot directly change the website content from the sidebar.
 
 ## Preview and check your edits
 
